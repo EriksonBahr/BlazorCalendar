@@ -43,13 +43,20 @@ header {
 }
 
 /* Calendar Style */
+
+.calendar {
+    padding: 10px;
+}
+
 .calendar-table {
-    margin: 10px;
     width: 100%;
     background-color: #f3f2f1;
     text-align: center;
 }
 
+.calendar-table td {
+    padding: 3px;
+}
 .calendar-table thead {
     background-color: white;
 }
@@ -172,4 +179,8 @@ header {
 
 .card {
     margin: 10px
+}
+
+.toolbar-full-panel {
+    min-width: 265px;
 }
