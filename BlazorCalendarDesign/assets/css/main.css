@@ -81,6 +81,18 @@ header {
     padding: 2px;
 }
 
+@media (max-width: 900px){
+    .calendar-table .day {
+        width: 100%;
+        height: 50px;
+        min-width: auto;
+    }
+
+    .day .day-event {
+        display: none;
+    }
+}
+
 .red-orange {
     background: #da3b01;
     color: white;
