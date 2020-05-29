@@ -15,7 +15,7 @@
 - [x] :heart: Create blazor application UI
 - [ ] :lock: Create MS authentication logic
 - [x] :sparkling_heart: Improve how stacked events look up in the calendar td
-- [ ] Improve alignment of the calendar table and td
+- [x] Improve alignment of the calendar table and td
 - [ ] Break all ui logic in separated components
 - [ ] :ok_hand: Move all C# logic to separated source codes
 - [ ] Unit tests and refactor all logic of AddEvent comp
@@ -25,6 +25,7 @@
 - [ ] AddEvent component is floating over the calendar
 - [ ] Add more animations to the calendar components
 - [ ] Events won't be saved if the user don't select a day
+- [ ] Add how many events are available when resizing the screen for mobo aps
 
 ## Credits
 
