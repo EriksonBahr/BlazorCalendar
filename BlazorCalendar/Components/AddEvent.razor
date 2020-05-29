@@ -1,0 +1,31 @@
+<div class="ms-depth-16 card">
+    <EditForm Model="model" OnValidSubmit="AddEventSelectedDay">
+        <div class="calendar-toolbar">
+            <button class="toolbar-button" type="submit"><i class="ms-Icon ms-Icon--AddEvent"></i></button>
+        </div>
+        <div class="card-content">
+            <h3 class="ms-fontSize-24 ms-fontWeight-regular">@SelectedDay.Date.ToString("D")</h3>
+            <input type="text" @bind-value="model.Subject" class="fluent-input" placeholder="Event Subject">
+            <input type="time" @bind-value="model.StartDate" class="fluent-input" placeholder="Event Subject">
+            <input type="time" @bind-value="model.EndDate "class="fluent-input" placeholder="Event Subject">
+        </div>
+    </EditForm>
+</div>
+
+@code {
+    [Parameter]
+    public CalendarDay SelectedDay { get; set; }
+
+    private CalendarEvent model = new CalendarEvent();
+
+    private void AddEventSelectedDay(){
+        SelectedDay.Events.Add(new CalendarEvent() {
+            Subject = model.Subject,
+            StartDate =  new DateTime(SelectedDay.Date.Year, SelectedDay.Date.Month, SelectedDay.Date.Day, model.StartDate.Date.Hour, model.StartDate.Date.Minute, 0),
+            EndDate = new DateTime(SelectedDay.Date.Year, SelectedDay.Date.Month, SelectedDay.Date.Day, model.EndDate.Date.Hour, model.EndDate.Date.Minute, 0)
+        });
+
+       OnEventAdded();
+    }
+    public static event Action OnEventAdded = () => {};
+}

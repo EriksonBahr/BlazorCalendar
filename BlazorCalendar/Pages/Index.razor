@@ -1,0 +1,59 @@
+﻿@page "/"
+
+<header>
+    <h3 class="ms-fontSize-42 ms-fonweight-regular">Welcome to Blazor Calendar</h3>
+    <p class="ms-fontSize-14 ms-fontWeight-regular"> Blazor Calendar allows you to manager all your events within
+        your Outlook Calendar.</p>
+
+    <AuthorizeView>
+        <NotAuthorized>
+            <!-- Not auth users -->
+            <p class="ms-fontSize-14 ms-fonweight-regular"> Please sign in with Microsoft account to get started.</p>
+            <a href="#" class="microsoft-login-button shadow-effect ms-fontSize-14"><img
+                    src="/images/ms-icon.png">Sign in with Microsoft</a>
+        </NotAuthorized>
+    </AuthorizeView>
+</header>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-9">
+                <Calendar>
+                    <DayTemplate Context="day">
+                        @{
+                            string stringDayClass = day.Date == DateTime.Now.Date ? "current-day" : "";
+                            stringDayClass += day.IsEmpty ? " disabled-day" : "";
+                            stringDayClass += day == selectedDay ? "selected-day" : "";
+                        }
+                        <td>
+                            <div class="day shadow-effect @stringDayClass" @onclick="() => selectedDay = day"> 
+                                <h3 class="ms-fontSize-24 ms-fontWieght-regular">@day.DayNumber</h3>
+
+                                @if (day.Events.Count > 0){
+                                    @foreach (var item in day.Events)
+                                    {
+                                        <div class="day-event @item.Color">
+                                            @Truncate(@item.Subject, 15)
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </td>
+                    </DayTemplate>
+                </Calendar>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-3">
+            <AddEvent SelectedDay="selectedDay"/>
+            <EventList SelectedDay="selectedDay"/>
+        </div>
+    </div>
+
+@code {
+    private CalendarDay selectedDay = new CalendarDay
+    {
+        Date = DateTime.Now
+    };
+
+    public string Truncate(string value, int maxChars)
+    {
+        return value.Length <= maxChars ? value : value.Substring(0, maxChars) + "...";
+    }
+}
