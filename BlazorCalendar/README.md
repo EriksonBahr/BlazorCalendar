@@ -14,7 +14,7 @@
 - [x] :art: Create initial design using FluentUI
 - [x] :heart: Create blazor application UI
 - [ ] :lock: Create MS authentication logic
-- [ ] :sparkling_heart: Improve how stacked events look up in the calendar td
+- [x] :sparkling_heart: Improve how stacked events look up in the calendar td
 - [ ] Improve alignment of the calendar table and td
 - [ ] Break all ui logic in separated components
 - [ ] :ok_hand: Move all C# logic to separated source codes
@@ -24,6 +24,7 @@
 - [ ] :rocket: Host the blazor wasm as a static site on github
 - [ ] AddEvent component is floating over the calendar
 - [ ] Add more animations to the calendar components
+- [ ] Events won't be saved if the user don't select a day
 
 ## Credits
 
