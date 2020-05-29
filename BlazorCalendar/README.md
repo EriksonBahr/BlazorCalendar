@@ -22,10 +22,11 @@
 - [ ] Unit tests and refactor all logic of Event list comp
 - [ ] Unit tests and refactor all logic of Calendar comp
 - [ ] :rocket: Host the blazor wasm as a static site on github
-- [ ] AddEvent component is floating over the calendar
+- [x] AddEvent component is floating over the calendar
 - [ ] Add more animations to the calendar components
 - [ ] Events won't be saved if the user don't select a day
 - [ ] Add how many events are available when resizing the screen for mobo aps
+- [ ] Make the amount of text vary when showing the events as labels
 
 ## Credits
 

@@ -185,7 +185,14 @@ header {
 .card {
     margin: 10px
 }
-
-.toolbar-full-panel {
-     min-width: 316px; /*todo: fixme... we should use bootstrap only... not this - weird behavior when colapsing */
+/* todo: fix me... we are not supposed to do this. :( */
+@media (max-width: 1240px){
+    .event-panel {
+        min-width: 997px;
+    }
+}
+@media (max-width: 974px){
+    .event-panel {
+        min-width: auto;
+    }
 }
