@@ -28,10 +28,16 @@
                                 <h3 class="ms-fontSize-24 ms-fontWieght-regular">@day.DayNumber</h3>
 
                                 @if (day.Events.Count > 0){
-                                    @foreach (var item in day.Events)
+                                    @foreach (var item in day.Events.Take(MAX_ITEMS_THAT_FIT_DAY))
                                     {
                                         <div class="day-event @item.Color">
-                                            @Truncate(@item.Subject, 15)
+                                            @Truncate(@item.Subject, 18)
+                                        </div>
+                                    }
+
+                                    @if (day.Events.Count > MAX_ITEMS_THAT_FIT_DAY){
+                                        <div class="day-event">
+                                            You got + @(day.Events.Count - MAX_ITEMS_THAT_FIT_DAY) events.
                                         </div>
                                     }
                                 }
@@ -47,6 +53,7 @@
     </div>
 
 @code {
+    private int MAX_ITEMS_THAT_FIT_DAY = 2;
     private CalendarDay selectedDay = new CalendarDay
     {
         Date = DateTime.Now

@@ -22,6 +22,8 @@
 - [ ] Unit tests and refactor all logic of Event list comp
 - [ ] Unit tests and refactor all logic of Calendar comp
 - [ ] :rocket: Host the blazor wasm as a static site on github
+- [ ] AddEvent component is floating over the calendar
+- [ ] Add more animations to the calendar components
 
 ## Credits
 

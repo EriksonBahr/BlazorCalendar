@@ -63,7 +63,7 @@ header {
 
 .calendar-table .day{
     width: 125px;
-    height: 100px;
+    height: 110px;
     min-width: 125px;
     margin: 2px;
     border-radius: 5px;
@@ -90,6 +90,7 @@ header {
 .day .day-event {
     font-size: 10px;
     padding: 2px;
+    border-radius: 5px;
 }
 
 @media (max-width: 900px){

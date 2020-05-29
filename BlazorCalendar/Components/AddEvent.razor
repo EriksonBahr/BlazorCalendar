@@ -21,8 +21,8 @@
     private void AddEventSelectedDay(){
         SelectedDay.Events.Add(new CalendarEvent() {
             Subject = model.Subject,
-            StartDate =  new DateTime(SelectedDay.Date.Year, SelectedDay.Date.Month, SelectedDay.Date.Day, model.StartDate.Date.Hour, model.StartDate.Date.Minute, 0),
-            EndDate = new DateTime(SelectedDay.Date.Year, SelectedDay.Date.Month, SelectedDay.Date.Day, model.EndDate.Date.Hour, model.EndDate.Date.Minute, 0)
+            StartDate =  new DateTime(SelectedDay.Date.Year, SelectedDay.Date.Month, SelectedDay.Date.Day, model.StartDate.Hour, model.StartDate.Minute, 0),
+            EndDate = new DateTime(SelectedDay.Date.Year, SelectedDay.Date.Month, SelectedDay.Date.Day, model.EndDate.Hour, model.EndDate.Minute, 0)
         });
 
        OnEventAdded();
