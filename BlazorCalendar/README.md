@@ -29,6 +29,7 @@
 - [ ] Make the amount of text vary when showing the events as labels
 - [ ] Add notification when an event is added
 - [ ] Add notification when an event is stating
+- [ ] Fix the login and logout redirects
 
 ## Credits
 
