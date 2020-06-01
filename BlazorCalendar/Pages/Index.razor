@@ -9,48 +9,52 @@
         <NotAuthorized>
             <!-- Not auth users -->
             <p class="ms-fontSize-14 ms-fonweight-regular"> Please sign in with Microsoft account to get started.</p>
-            <a href="#" class="microsoft-login-button shadow-effect ms-fontSize-14"><img
+            <a href="authentication/login" class="microsoft-login-button shadow-effect ms-fontSize-14"><img
                     src="/images/ms-icon.png">Sign in with Microsoft</a>
         </NotAuthorized>
     </AuthorizeView>
 </header>
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-9">
-                <Calendar>
-                    <DayTemplate Context="day">
-                        @{
-                            string stringDayClass = day.Date == DateTime.Now.Date ? "current-day" : "";
-                            stringDayClass += day.IsEmpty ? " disabled-day" : "";
-                            stringDayClass += day == selectedDay ? "selected-day" : "";
-                        }
-                        <td>
-                            <div class="day shadow-effect @stringDayClass" @onclick="() => selectedDay = day"> 
-                                <h3 class="ms-fontSize-24 ms-fontWieght-regular">@day.DayNumber</h3>
+<AuthorizeView>
+    <Authorized>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-9">
+                    <Calendar>
+                        <DayTemplate Context="day">
+                            @{
+                                string stringDayClass = day.Date == DateTime.Now.Date ? "current-day" : "";
+                                stringDayClass += day.IsEmpty ? " disabled-day" : "";
+                                stringDayClass += day == selectedDay ? "selected-day" : "";
+                            }
+                            <td>
+                                <div class="day shadow-effect @stringDayClass" @onclick="() => selectedDay = day"> 
+                                    <h3 class="ms-fontSize-24 ms-fontWieght-regular">@day.DayNumber</h3>
 
-                                @if (day.Events.Count > 0){
-                                    @foreach (var item in day.Events.Take(MAX_ITEMS_THAT_FIT_DAY))
-                                    {
-                                        <div class="day-event @item.Color">
-                                            @Truncate(@item.Subject, 18)
-                                        </div>
-                                    }
+                                    @if (day.Events.Count > 0){
+                                        @foreach (var item in day.Events.Take(MAX_ITEMS_THAT_FIT_DAY))
+                                        {
+                                            <div class="day-event @item.Color">
+                                                @Truncate(@item.Subject, 18)
+                                            </div>
+                                        }
 
-                                    @if (day.Events.Count > MAX_ITEMS_THAT_FIT_DAY){
-                                        <div class="day-event">
-                                            You got + @(day.Events.Count - MAX_ITEMS_THAT_FIT_DAY) events.
-                                        </div>
+                                        @if (day.Events.Count > MAX_ITEMS_THAT_FIT_DAY){
+                                            <div class="day-event">
+                                                You got + @(day.Events.Count - MAX_ITEMS_THAT_FIT_DAY) events.
+                                            </div>
+                                        }
                                     }
-                                }
-                            </div>
-                        </td>
-                    </DayTemplate>
-                </Calendar>
+                                </div>
+                            </td>
+                        </DayTemplate>
+                    </Calendar>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-3 event-panel">
+                <AddEvent SelectedDay="selectedDay"/>
+                <EventList SelectedDay="selectedDay"/>
+            </div>
         </div>
-        <div class="col-sm-12 col-md-12 col-lg-3 event-panel">
-            <AddEvent SelectedDay="selectedDay"/>
-            <EventList SelectedDay="selectedDay"/>
-        </div>
-    </div>
+    </Authorized>
+</AuthorizeView>
 
 @code {
     private int MAX_ITEMS_THAT_FIT_DAY = 2;
