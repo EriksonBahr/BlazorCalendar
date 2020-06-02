@@ -3,7 +3,7 @@
 
 ## Project Objectives:
 
-1 - Practice front end web development.
+1 - Practice front end web development. \
 2 - Practice [FluentUI](https://developer.microsoft.com/en-us/fluentui). \
 3 - Practice one SPA framework; \
 4 - Introduce few extra features as the time goes by; \
@@ -13,7 +13,8 @@
 ## Todo stuff
 - [x] :art: Create initial design using FluentUI
 - [x] :heart: Create blazor application UI
-- [ ] :lock: Create MS authentication logic
+- [x] :lock: Create MS authentication logic
+- [ ] :lock: Fix authentication redirection
 - [x] :sparkling_heart: Improve how stacked events look up in the calendar td
 - [x] Improve alignment of the calendar table and td
 - [ ] Break all ui logic in separated components
@@ -28,8 +29,9 @@
 - [ ] Add how many events are available when resizing the screen for mobo aps
 - [ ] Make the amount of text vary when showing the events as labels
 - [ ] Add notification when an event is added
-- [ ] Add notification when an event is stating
+- [ ] Add notification when an event is starting
 - [ ] Fix the login and logout redirects
+- [ ] Add some sort of webhook when events are added on Windows
 
 ## Credits
 

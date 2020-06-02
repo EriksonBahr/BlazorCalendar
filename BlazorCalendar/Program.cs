@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using BlazorCalendar.Services;
 
 namespace BlazorCalendar
 {
@@ -24,7 +25,7 @@ namespace BlazorCalendar
                 builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
                 options.ProviderOptions.DefaultAccessTokenScopes.Add("https://graph.microsoft.com/Calendars.ReadWrite");
             });
-
+            builder.Services.AddTransient<ICalendarEventsProvider, MicrosoftCalendarEventsProvider>();
             await builder.Build().RunAsync();
         }
     }

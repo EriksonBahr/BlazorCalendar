@@ -1,3 +1,6 @@
+@using Services
+@inject ICalendarEventsProvider CalendarEventsProvider
+
 <div class="calendar">
     <div class="row">
         <div class="col-sm-12 col-lg-2">
@@ -58,26 +61,29 @@
     private int year = 2020;
     private int month = 5;
     private List<CalendarDay> days = new List<CalendarDay>();
+    private IEnumerable<CalendarEvent> events {get; set;}
 
-    void OnYearSelectChanged(ChangeEventArgs e){
+    async Task OnYearSelectChanged(ChangeEventArgs e){
         year = Convert.ToInt32(e.Value.ToString());
-        UpdateCalendar();
+        await UpdateCalendar();
     }
 
-    void OnMonthSelectChanged(ChangeEventArgs e){
+    async Task OnMonthSelectChanged(ChangeEventArgs e){
         month = Convert.ToInt32(e.Value.ToString());
-        UpdateCalendar();
+        await UpdateCalendar();
     }
 
-    protected override void OnInitialized(){
-       UpdateCalendar(); 
+    protected override async Task OnInitializedAsync(){
+       await UpdateCalendar(); 
 
        AddEvent.OnEventAdded += () => {
            StateHasChanged();
        };
     }
 
-    void UpdateCalendar(){
+    private async Task UpdateCalendar(){
+        var events = await CalendarEventsProvider.GetEventsInMonthAsync(year, month);
+
         days = new List<CalendarDay>();
         var firstDayDate = new DateTime(year, month, 1);
         var weekDayNumber = (int)firstDayDate.DayOfWeek;
@@ -101,6 +107,7 @@
                 IsEmpty = false,
                 Date = new DateTime(year, month, i + 1)
             });
+            await AddEventsToCalendar(days.Last(), events); //too lazy to add to a local var
         }
 
         int remainingDays = COUNT_DAYS_IN_CALENDAR - days.Count;
@@ -110,6 +117,18 @@
                 DayNumber = i + 1,
                 IsEmpty = true
             });            
+        }
+    }
+
+    private async Task AddEventsToCalendar(CalendarDay calendarDay, IEnumerable<CalendarEvent> events){
+        if (events != null && events.Count() > 0){
+            await Task.Run(() => {
+                var filteredEvents = events.Where(e => e.StartDate.Date == calendarDay.Date.Date);
+                foreach (CalendarEvent filteredEvent in filteredEvents)
+                {
+                    calendarDay.Events.Add(filteredEvent);
+                };
+            });
         }
     }
 }
