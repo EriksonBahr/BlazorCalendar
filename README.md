@@ -12,8 +12,8 @@
 
 ## App running images
 
-![Authorized Users](./images/blazorCalendar.png?raw=true)
-![Authorized Users - Small](./images/blazorCalendarSmall.png?raw=true)
+![Authorized Users](images/blazorCalendar.png?raw=true)
+![Authorized Users - Small](images/blazorCalendarSmall.png?raw=true)
 
 ## Todo stuff
 - [x] :art: Create initial design using FluentUI
