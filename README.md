@@ -10,6 +10,11 @@
 5 - Add deployment variations (Blazor and Blazor WASM) \
 6 - Try bringing to mobile using Xamarin?
 
+## App running images
+
+![Authorized Users](./images/blazorCalendar.png)
+![Authorized Users - Small](./images/blazorCalendarSmall.png)
+
 ## Todo stuff
 - [x] :art: Create initial design using FluentUI
 - [x] :heart: Create blazor application UI
@@ -35,5 +40,5 @@
 
 ## Credits
 
-The project was created following [this](https://www.youtube.com/playlist?list=PLFJQnCcZXWjv89uDubYW7NniK8mEl4sWQ) youtube tutorial series.
+The project was created following [this](https://www.youtube.com/playlist?list=PLFJQnCcZXWjv89uDubYW7NniK8mEl4sWQ) youtube tutorial series. His full source code (differs from my repo) is available [here](https://github.com/aksoftware98/BlazorOutlookCalendar).
 
