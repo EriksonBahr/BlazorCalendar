@@ -30,6 +30,10 @@
                                     <h3 class="ms-fontSize-24 ms-fontWieght-regular">@day.DayNumber</h3>
 
                                     @if (day.Events.Count > 0){
+                                        <div class="ms-fontSize-14 ms-fontWieght-regular notif-count-coll">
+                                            @day.Events.Count
+                                        </div>
+
                                         @foreach (var item in day.Events.Take(MAX_ITEMS_THAT_FIT_DAY))
                                         {
                                             <div class="day-event @item.Color">

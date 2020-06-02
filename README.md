@@ -26,7 +26,7 @@
 - [x] AddEvent component is floating over the calendar
 - [ ] Add more animations to the calendar components
 - [ ] Events won't be saved if the user don't select a day
-- [ ] Add how many events are available when resizing the screen for mobo aps
+- [x] Add how many events are available when resizing the screen for mobo aps
 - [ ] Make the amount of text vary when showing the events as labels
 - [ ] Add notification when an event is added
 - [ ] Add notification when an event is starting

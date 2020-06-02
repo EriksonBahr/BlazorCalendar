@@ -185,6 +185,26 @@ header {
 .card {
     margin: 10px
 }
+
+.notif-count-coll {
+    display: none;
+    position:relative;
+    right:-1.4em;
+    top:-2.9em;
+    background-color:#da3b01;
+    line-height:20px;
+    width:20px;
+    height:20px;
+    border-radius:10px;
+    color: white;
+}
+
+@media (max-width: 900px){
+    .notif-count-coll {
+        display: inline-block;;
+    }
+}
+
 /* todo: fix me... we are not supposed to do this. :( */
 @media (max-width: 1240px){
     .event-panel {
