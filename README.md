@@ -1,5 +1,6 @@
 # Outlook calendar on Blazor:
 
+The running app can be found [here](https://blazorstaticapps.z22.web.core.windows.net/).
 
 ## Project Objectives:
 
@@ -27,7 +28,7 @@
 - [ ] Unit tests and refactor all logic of AddEvent comp
 - [ ] Unit tests and refactor all logic of Event list comp
 - [ ] Unit tests and refactor all logic of Calendar comp
-- [ ] :rocket: Host the blazor wasm as a static site on github
+- [x] :rocket: Host the blazor wasm as a static site on ~~github~~ Azure Static Websites
 - [x] AddEvent component is floating over the calendar
 - [ ] Add more animations to the calendar components
 - [ ] Events won't be saved if the user don't select a day
