@@ -27,7 +27,7 @@ The running app can be found [here](https://blazorstaticapps.z22.web.core.window
 - [ ] :ok_hand: Move all C# logic to separated source codes
 - [ ] Unit tests and refactor all logic of AddEvent comp
 - [ ] Unit tests and refactor all logic of Event list comp
-- [ ] Unit tests and refactor all logic of Calendar comp
+- [x] Unit tests and refactor all logic of Calendar comp
 - [x] :rocket: Host the blazor wasm as a static site on ~~github~~ Azure Static Websites
 - [x] AddEvent component is floating over the calendar
 - [ ] Add more animations to the calendar components

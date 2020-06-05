@@ -23,7 +23,7 @@
                             @{
                                 string stringDayClass = day.Date == DateTime.Now.Date ? "current-day" : "";
                                 stringDayClass += day.IsEmpty ? " disabled-day" : "";
-                                stringDayClass += day == selectedDay ? "selected-day" : "";
+                                stringDayClass += day == selectedDay ? " selected-day" : ""; //todo: create a style builder
                             }
                             <td>
                                 <div class="day shadow-effect @stringDayClass" @onclick="() => selectedDay = day"> 
