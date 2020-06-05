@@ -38,6 +38,7 @@ The running app can be found [here](https://blazorstaticapps.z22.web.core.window
 - [ ] Add notification when an event is starting
 - [ ] Fix the login and logout redirects
 - [ ] Add some sort of webhook when events are added on Windows
+- [ ] Add pub to keep multiple tabs up to date
 
 ## Credits
 

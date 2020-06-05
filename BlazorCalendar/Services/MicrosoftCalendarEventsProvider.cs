@@ -11,17 +11,16 @@ namespace BlazorCalendar.Services
 {
     public class MicrosoftCalendarEventsProvider: ICalendarEventsProvider
     {
-
         // Get Access token 
         private readonly IAccessTokenProvider _accessTokenProvider;
         private readonly HttpClient _httpClient;
 
         private const string BASE_URL = "https://graph.microsoft.com/v1.0/me/events";
 
-        public MicrosoftCalendarEventsProvider(IAccessTokenProvider accessTokenProvider, HttpClient httpClient)
+        public MicrosoftCalendarEventsProvider(IAccessTokenProvider accessTokenProvider, IHttpClientFactory HttpClientFactory)
         {
             _accessTokenProvider = accessTokenProvider;
-            _httpClient = httpClient;
+            _httpClient = HttpClientFactory.CreateClient("Default");
         }
 
         public async Task<ConcurrentBag<CalendarEvent>> GetEventsInMonthAsync(int year, int month)
