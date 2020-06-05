@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using BlazorCalendar.Services;
+using BlazorCalendar.Core;
 
 namespace BlazorCalendar
 {
@@ -29,6 +30,7 @@ namespace BlazorCalendar
                 options.ProviderOptions.DefaultAccessTokenScopes.Add("https://graph.microsoft.com/Calendars.ReadWrite");
             });
             builder.Services.AddTransient<ICalendarEventsProvider, MicrosoftCalendarEventsProvider>();
+            builder.Services.AddTransient<CalendarController>();
             await builder.Build().RunAsync();
         }
     }

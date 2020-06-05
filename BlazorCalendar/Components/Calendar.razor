@@ -1,5 +1,5 @@
 @using Services
-@inject ICalendarEventsProvider CalendarEventsProvider
+@inject CalendarController calendarController
 
 <div class="calendar">
     <div class="row">
@@ -82,7 +82,7 @@
     }
 
     private async Task UpdateCalendar(){
-        var events = await CalendarEventsProvider.GetEventsInMonthAsync(year, month);
+        var events = await calendarController.GetEventsInMonthAsync(year, month);
 
         days = new List<CalendarDay>();
         var firstDayDate = new DateTime(year, month, 1);

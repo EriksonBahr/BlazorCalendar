@@ -15,4 +15,8 @@
     <PackageReference Include="System.Net.Http.Json" Version="3.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorCalendar.Core\BlazorCalendar.Core.csproj" />
+  </ItemGroup>
+
 </Project>
