@@ -40,7 +40,7 @@
             </tr>
         </thead>
         <tbody>
-            @for (int i = 0; i < COUNT_DAYS_IN_CALENDAR; i++)
+            @for (int i = 0; i < CalendarController.COUNT_DAYS_IN_CALENDAR; i++)
             {
                 <tr>
                     @foreach (var day in days.Skip(i * 7).Take(7))
@@ -55,11 +55,10 @@
 
 
 @code {
-    private int COUNT_DAYS_IN_CALENDAR = 42;
     [Parameter]
     public RenderFragment<CalendarDay> DayTemplate {get; set;}
     private int year = 2020;
-    private int month = 5;
+    private int month = 6;
     private List<CalendarDay> days = new List<CalendarDay>();
     private IEnumerable<CalendarEvent> events {get; set;}
 
@@ -74,60 +73,33 @@
     }
 
     protected override async Task OnInitializedAsync(){
-       await UpdateCalendar(); 
+        await UpdateCalendar();
 
-       AddEvent.OnEventAdded += () => {
-           StateHasChanged();
-       };
+        AddEvent.OnEventAdded += () => {
+            StateHasChanged();
+        };
     }
 
     private async Task UpdateCalendar(){
         var events = await calendarController.GetEventsInMonthAsync(year, month);
 
-        days = new List<CalendarDay>();
-        var firstDayDate = new DateTime(year, month, 1);
-        var weekDayNumber = (int)firstDayDate.DayOfWeek;
-        var numberOfEmptyDays = weekDayNumber;
-
-        var lastDayInPrevMonth = DateTime.DaysInMonth(month > 0 ? year : year-1, month > 1 ? month -1 : 12);
-        //add empty days
-        for (int i = numberOfEmptyDays; i > 0; i--)
-        {     
-            days.Add(new CalendarDay {
-                DayNumber = lastDayInPrevMonth -i +1,
-                IsEmpty = true
-            });
-        }
-
-        int numberIsDaysInMonth = DateTime.DaysInMonth(year, month);
-        for (int i = 0; i < numberIsDaysInMonth; i++)
-        {
-            days.Add(new CalendarDay {
-                DayNumber = i + 1,
-                IsEmpty = false,
-                Date = new DateTime(year, month, i + 1)
-            });
-            await AddEventsToCalendar(days.Last(), events); //too lazy to add to a local var
-        }
-
-        int remainingDays = COUNT_DAYS_IN_CALENDAR - days.Count;
-        for (int i = 0; i < remainingDays; i++)
-        {
-            days.Add(new CalendarDay {
-                DayNumber = i + 1,
-                IsEmpty = true
-            });            
-        }
+        days = calendarController.BuildMonthCalendarDays(year, month);
+        await AddEventsToCalendar(days, events);
     }
 
-    private async Task AddEventsToCalendar(CalendarDay calendarDay, IEnumerable<CalendarEvent> events){
+    private async Task AddEventsToCalendar(List<CalendarDay> days, IEnumerable<CalendarEvent> events){
         if (events != null && events.Count() > 0){
             await Task.Run(() => {
-                var filteredEvents = events.Where(e => e.StartDate.Date == calendarDay.Date.Date);
-                foreach (CalendarEvent filteredEvent in filteredEvents)
+                var nonEmptyDays = days.Where(d => !d.IsEmpty);
+
+                foreach (var nonEmptyDate in nonEmptyDays)
                 {
-                    calendarDay.Events.Add(filteredEvent);
-                };
+                    var filteredEvents = events.Where(e => e.StartDate.Date == nonEmptyDate.Date.Date);
+                    foreach (CalendarEvent filteredEvent in filteredEvents)
+                    {
+                        nonEmptyDate.Events.Add(filteredEvent);
+                    };
+                }
             });
         }
     }
