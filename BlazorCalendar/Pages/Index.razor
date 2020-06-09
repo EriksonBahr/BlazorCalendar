@@ -1,5 +1,5 @@
 ﻿@page "/"
-
+@using BlazorCalendar.Core.CalendarExtensions
 <header>
     <h3 class="ms-fontSize-42 ms-fonweight-regular">Welcome to Blazor Calendar</h3>
     <p class="ms-fontSize-14 ms-fontWeight-regular"> Blazor Calendar allows you to manager all your events within
@@ -21,12 +21,10 @@
                     <Calendar>
                         <DayTemplate Context="day">
                             @{
-                                string stringDayClass = day.Date == DateTime.Now.Date ? "current-day" : "";
-                                stringDayClass += day.IsEmpty ? " disabled-day" : "";
-                                stringDayClass += day == selectedDay ? " selected-day" : ""; //todo: create a style builder
+                                string stringDayClass = day.BuildCssClasses(selectedDay);
                             }
                             <td>
-                                <div class="day shadow-effect @stringDayClass" @onclick="() => selectedDay = day"> 
+                                <div class="day shadow-effect @stringDayClass" @onclick="() => selectedDay = day" @key="day"> 
                                     <h3 class="ms-fontSize-24 ms-fontWieght-regular">@day.DayNumber</h3>
 
                                     @if (day.Events.Count > 0){
