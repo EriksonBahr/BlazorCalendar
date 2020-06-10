@@ -7,7 +7,7 @@ using System.Text;
 
 namespace BlazorCalendar.Core.Tests
 {
-    public class CalendarExtensionsTests
+    public class CalendarDayExtensionsTests
     {
 
         [TestCase]
@@ -37,5 +37,24 @@ namespace BlazorCalendar.Core.Tests
             Assert.That(cssClasses.Contains("current-day"));
             Assert.That(cssClasses.Trim().Contains(" "));
         }
+    }
+
+    public class CalendarEventTests {
+
+        [TestCase]
+        public void ShallTruncateTooBigSubjects() {
+            var calEvent = new CalendarEvent { Subject = "This is a very big subject and needs to be truncated" };
+            string subject = calEvent.GetTruncatedSubject(5);
+            Assert.That(subject.Length, Is.EqualTo(8));
+            Assert.That(subject.EndsWith("..."));
+        }
+
+        [TestCase]
+        public void ShallReturnStringIfNotTooBig() {
+            var calEvent = new CalendarEvent { Subject = "Small description" };
+            string subject = calEvent.GetTruncatedSubject(18);
+            Assert.That(subject, Is.EqualTo(calEvent.Subject));
+        }
+
     }
 }

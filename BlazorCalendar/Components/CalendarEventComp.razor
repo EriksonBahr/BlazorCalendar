@@ -1,0 +1,11 @@
+﻿@using BlazorCalendar.Models 
+@using BlazorCalendar.Core.CalendarExtensions 
+
+<div class="day-event @calendarEvent.Color">
+    @calendarEvent.GetTruncatedSubject(18)
+</div>
+
+@code {
+    [Parameter]
+    public CalendarEvent calendarEvent { get; set; }
+}

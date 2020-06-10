@@ -19,4 +19,12 @@ namespace BlazorCalendar.Core.CalendarExtensions
             return stringDayClass;
         }
     }
+
+    public static class CalendarEventExtension
+    { 
+        public static string GetTruncatedSubject(this CalendarEvent calEvent, int maxChars)
+        { 
+            return calEvent.Subject.Length <= maxChars ? calEvent.Subject : calEvent.Subject.Substring(0, maxChars) + "...";
+        }
+    }
 }

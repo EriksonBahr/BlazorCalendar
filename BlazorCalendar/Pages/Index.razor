@@ -34,9 +34,7 @@
 
                                         @foreach (var item in day.Events.Take(MAX_ITEMS_THAT_FIT_DAY))
                                         {
-                                            <div class="day-event @item.Color">
-                                                @Truncate(@item.Subject, 18)
-                                            </div>
+                                            <CalendarEventComp calendarEvent="@item"></CalendarEventComp>
                                         }
 
                                         @if (day.Events.Count > MAX_ITEMS_THAT_FIT_DAY){
@@ -64,9 +62,4 @@
     {
         Date = DateTime.Now
     };
-
-    public string Truncate(string value, int maxChars)
-    {
-        return value.Length <= maxChars ? value : value.Substring(0, maxChars) + "...";
-    }
 }
